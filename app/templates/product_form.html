@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Add Product{% endblock %}
+{% block title %}
+{% if product %}Edit Product{% else %}Add Product{% endif %}
+{% endblock %}
 
 {% block content %}
 
 <div class="card shadow">
 
     <div class="card-header">
-        Add Product
+        <h4>
+            {% if product %}
+                Edit Product
+            {% else %}
+                Add Product
+            {% endif %}
+        </h4>
     </div>
 
     <div class="card-body">
@@ -20,14 +28,19 @@
 
                     <label>Company</label>
 
-                    <select name="customer" class="form-control" required>
+                    <select name="customer" class="form-select" required>
 
                         <option value="">Select Company</option>
 
                         {% for customer in customers %}
 
-                        <option value="{{ customer.id }}">
+                        <option value="{{ customer.id }}"
+                            {% if product and product.customer_id == customer.id %}
+                                selected
+                            {% endif %}>
+
                             {{ customer.company_name }}
+
                         </option>
 
                         {% endfor %}
@@ -40,10 +53,12 @@
 
                     <label>Product Name</label>
 
-                    <input type="text"
-                           name="product_name"
-                           class="form-control"
-                           required>
+                    <input
+                        type="text"
+                        name="product_name"
+                        class="form-control"
+                        value="{{ product.product_name if product else '' }}"
+                        required>
 
                 </div>
 
@@ -55,9 +70,11 @@
 
                     <label>Cylinder No.</label>
 
-                    <input type="text"
-                           name="cylinder_no"
-                           class="form-control">
+                    <input
+                        type="text"
+                        name="cylinder_no"
+                        class="form-control"
+                        value="{{ product.cylinder_no if product else '' }}">
 
                 </div>
 
@@ -65,16 +82,27 @@
 
                     <label>Artwork</label>
 
-                    <input type="file"
-                           name="artwork"
-                           class="form-control">
+                    <input
+                        type="file"
+                        name="artwork"
+                        class="form-control">
+
+                    {% if product and product.artwork_file %}
+                        <small class="text-success">
+                            Current File : {{ product.artwork_file }}
+                        </small>
+                    {% endif %}
 
                 </div>
 
             </div>
 
-            <button type="submit" class="btn btn-success">
-                Save Product
+            <button class="btn btn-success">
+                {% if product %}
+                    Update Product
+                {% else %}
+                    Save Product
+                {% endif %}
             </button>
 
             <a href="{{ url_for('product.products') }}"

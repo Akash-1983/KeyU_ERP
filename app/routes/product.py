@@ -45,30 +45,24 @@ def test():
 @product.route("/products")
 def products():
 
-    search = request.args.get("search", "")
+    search = request.args.get("search", "").strip()
+
+    query = Product.query.join(Customer)
 
     if search:
+        query = query.filter(
+            Product.product_no.ilike(f"%{search}%") |
+            Product.product_name.ilike(f"%{search}%") |
+            Product.cylinder_no.ilike(f"%{search}%") |
+            Customer.company_name.ilike(f"%{search}%")
+        )
 
-        products = Product.query.join(Customer).filter(
-
-            (Product.product_name.ilike(f"%{search}%")) |
-
-            (Customer.company_name.ilike(f"%{search}%"))
-
-        ).all()
-
-    else:
-
-        products = Product.query.order_by(Product.id.desc()).all()
+    products = query.order_by(Product.id.desc()).all()
 
     return render_template(
-
         "products.html",
-
         products=products,
-
         search=search
-
     )
 
 # ==========================================

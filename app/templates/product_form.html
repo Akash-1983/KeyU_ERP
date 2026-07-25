@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+        Add Product
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Company</label>
+
+                    <select name="customer" class="form-control" required>
+
+                        <option value="">Select Company</option>
+
+                        {% for customer in customers %}
+
+                        <option value="{{ customer.id }}">
+                            {{ customer.company_name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Product Name</label>
+
+                    <input type="text"
+                           name="product_name"
+                           class="form-control"
+                           required>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Cylinder No.</label>
+
+                    <input type="text"
+                           name="cylinder_no"
+                           class="form-control">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Artwork</label>
+
+                    <input type="file"
+                           name="artwork"
+                           class="form-control">
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save Product
+            </button>
+
+            <a href="{{ url_for('product.products') }}"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

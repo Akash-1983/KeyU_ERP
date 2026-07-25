@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Total Customers</h5>
+
+                    <h2>{{ customer_count }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Total Products</h5>
+
+                    <h2>{{ product_count }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Pending Orders</h5>
+
+                    <h2>0</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Completed Orders</h5>
+
+                    <h2>0</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            Dashboard
+
+        </div>
+
+        <div class="card-body">
+
+            <h3>Welcome to Govind Enterprises</h3>
+
+            <p>
+                Order Management System Version 1.0
+            </p>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h5>Available Modules</h5>
+
+                    <ul>
+
+                        <li>✔ Dashboard</li>
+
+                        <li>✔ Customer Master</li>
+
+                        <li>✔ Product Master</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <h5>Coming Soon</h5>
+
+                    <ul>
+
+                        <li>Printer Master</li>
+
+                        <li>Material Master</li>
+
+                        <li>Order Entry</li>
+
+                        <li>Reports</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

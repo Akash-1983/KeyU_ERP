@@ -20,6 +20,7 @@ def create_app():
     from app.models.customer import Customer
     from app.models.product import Product
     from app.models.user import User
+    from app.models.printer import Printer
 
     # ==========================
     # Import Blueprints
@@ -28,6 +29,7 @@ def create_app():
     from app.routes.dashboard import dashboard
     from app.routes.customer import customer
     from app.routes.product import product
+    from app.routes.printer import printer
 
     # ==========================
     # Register Blueprints
@@ -36,6 +38,7 @@ def create_app():
     app.register_blueprint(dashboard)
     app.register_blueprint(customer)
     app.register_blueprint(product)
+    app.register_blueprint(printer)
 
     # ==========================
     # Create Database Tables

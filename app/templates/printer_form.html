@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if printer %}
+Edit Printer
+{% else %}
+Add Printer
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h4>
+
+            {% if printer %}
+                Edit Printer
+            {% else %}
+                Add Printer
+            {% endif %}
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Printer No.</label>
+
+                    <input type="text"
+                           class="form-control"
+                           value="{% if printer %}{{ printer.printer_no }}{% else %}{{ printer_no }}{% endif %}"
+                           readonly>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Printer Name</label>
+
+                    <input type="text"
+                           name="printer_name"
+                           class="form-control"
+                           value="{{ printer.printer_name if printer else '' }}"
+                           required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Contact Person</label>
+
+                    <input type="text"
+                           name="contact_person"
+                           class="form-control"
+                           value="{{ printer.contact_person if printer else '' }}">
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Mobile</label>
+
+                    <input type="text"
+                           name="mobile"
+                           class="form-control"
+                           value="{{ printer.mobile if printer else '' }}">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Email</label>
+
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           value="{{ printer.email if printer else '' }}">
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>GST No.</label>
+
+                    <input type="text"
+                           name="gst_no"
+                           class="form-control"
+                           value="{{ printer.gst_no if printer else '' }}">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Address</label>
+
+                    <textarea
+                        name="address"
+                        class="form-control"
+                        rows="2">{{ printer.address if printer else '' }}</textarea>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-success">
+
+                {% if printer %}
+                    Update Printer
+                {% else %}
+                    Save Printer
+                {% endif %}
+
+            </button>
+
+            <a href="{{ url_for('printer.printers') }}"
+               class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
